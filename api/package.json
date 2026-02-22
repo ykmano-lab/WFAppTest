@@ -1,8 +1,17 @@
-{
-  "name": "api",
-  "version": "1.0.0",
+"scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "prestart": "npm run build",
+    "start": "func start",
+    "test": "echo \"No tests yet...\""
+  },
   "dependencies": {
+    "@azure/functions": "^4.0.0",
     "cheerio": "^1.0.0-rc.12",
     "node-fetch": "^3.3.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "azure-functions-core-tools": "^4.x"
   }
 }
