@@ -42,7 +42,7 @@ jobs:
           # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
           app_location: "/" 
           api_location: "api" 
-          output_location: "dummy" 
+          output_location: "dist" 
           api_build_command: "npm run build"
           skip_app_build: false  #
           github_id_token: ${{ steps.idtoken.outputs.result }}
