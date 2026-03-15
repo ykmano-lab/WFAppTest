@@ -4,16 +4,23 @@ function App() {
   const [data, setData] = useState<any>(null);
 
   useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/todos/1")
-      .then((res) => res.json())
+fetch("/api/chousei") 
+      .then((res) => {
+        if (!res.ok) throw new Error("APIが見つかりません");
+        return res.json();
+      })
       .then((json) => setData(json))
-      .catch((err) => console.error(err));
+      .catch((err) => console.error("エラー:", err));
   }, []);
 
   return (
     <div style={{ padding: "20px" }}>
-      <h1>テストデータ取得</h1>
-      <pre>{JSON.stringify(data, null, 2)}</pre>
+      <h1>調整さんデータ取得</h1>
+      {data ? (
+        <pre>{JSON.stringify(data, null, 2)}</pre>
+      ) : (
+        <p>読み込み中...</p>
+      )}
     </div>
   );
 }
