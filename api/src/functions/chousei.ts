@@ -20,3 +20,9 @@ export async function chousei(request: HttpRequest, context: InvocationContext):
         }
     };
 };
+
+app.http('chousei', {
+    methods: ['GET', 'POST'],
+    authLevel: 'anonymous',
+    handler: chousei
+});
