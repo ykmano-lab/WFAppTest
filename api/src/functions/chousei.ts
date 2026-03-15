@@ -1,22 +1,19 @@
 import { app, HttpRequest, HttpResponseInit, InvocationContext } from "@azure/functions";
-import * as cheerio from "cheerio";
-import fetch from "node-fetch";
 
 export async function chousei(request: HttpRequest, context: InvocationContext): Promise<HttpResponseInit> {
-    const targetUrl = "https://chouseisan.com/s?h=fac9b2a726094d2d91a1825552de4448"; // 取得したいURL
-    
-    // 1. ページを取得
-    const response = await fetch(targetUrl);
-    const html = await response.text();
-    
-    // 2. 解析（スクレイピング）
-    const $ = cheerio.load(html);
-    const title = $("h1").text(); // 例えばタイトルを抜く
+    context.log(`Http function processed request for url "${request.url}"`);
 
+    // ここはテスト用に一旦固定のJSONを返します。これが動けばスクレイピングコードに差し替えます。
     return {
         jsonBody: {
-            eventTitle: title,
-            message: "本物のデータを取得しました！"
+            message: "APIは正常に動いています！",
+            status: "Success"
         }
     };
 };
+
+app.http('chousei', {
+    methods: ['GET', 'POST'],
+    authLevel: 'anonymous',
+    handler: chousei
+});
